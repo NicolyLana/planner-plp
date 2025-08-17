@@ -8,8 +8,7 @@
 2. Clonar o repositório do projeto:
 
    ```bash
-   git clone https://github.com/seu-usuario/planner-view.git
-   cd planner-view
+   git clone https://github.com/seu-usuario/planner-plp.git
    
 3. Instale as dependências:
    
