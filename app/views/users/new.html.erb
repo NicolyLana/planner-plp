@@ -35,7 +35,7 @@
 
           <%= password_input_with_icon(form, :raw_password_confirmation, 'Password.svg', 'Confirme sua Senha') %>
 
-          <p><%= link_to "Já tenho cadastro", get_all_users_path %></p>
+          <p><%= link_to "Já tenho cadastro", root_path %></p>
 
           <div class="form-group">
             <%= form.submit "CADASTRAR", class: "btn-primary"%>
@@ -46,19 +46,19 @@
       </div>
     </div>
 
-  <% if flash[:success] %>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            toastr.success('<%= j flash[:success] %>');
-        });
-    </script>
-  <% elsif flash[:error] %>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            toastr.error('<%= j flash[:error] %>');
-        });
-    </script>
-  <% end %>
+    <% if flash[:success] %>
+      <script>
+          document.addEventListener('DOMContentLoaded', function() {
+              toastr.success('<%= j flash[:success] %>');
+          });
+      </script>
+    <% elsif flash[:error] %>
+      <script>
+          document.addEventListener('DOMContentLoaded', function() {
+              toastr.error('<%= j flash[:error] %>');
+          });
+      </script>
+    <% end %>
 
 
   </body>
