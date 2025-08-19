@@ -1,6 +1,6 @@
 require "test_helper"
 
-class MetasControllerTest < ActionDispatch::IntegrationTest
+class AtividadeControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
