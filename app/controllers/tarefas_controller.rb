@@ -3,7 +3,7 @@ class TarefasController < ApplicationController
 
   # GET /tarefas
   def index
-    @tarefas = Tarefa.all
+    @tarefas = Tarefa.order(:data)
   end
 
   # GET /tarefas/:id
@@ -22,9 +22,10 @@ class TarefasController < ApplicationController
   # POST /tarefas
   def create
     @tarefa = Tarefa.new(tarefa_params)
+    @tarefa.status_id = Status.find_by(nome: 'Não concluída')&.id || default_status_id
 
     if @tarefa.save
-      redirect_to @tarefa, notice: 'Tarefa foi criada com sucesso.'
+      redirect_to home_path, notice: 'Tarefa foi criada com sucesso.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -52,8 +53,11 @@ class TarefasController < ApplicationController
     @tarefa = Tarefa.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def tarefa_params
-    params.require(:tarefa).permit(:nome, :descricao, :concluida)
+    params.require(:tarefa).permit(:data, :descricao, :bloco, :atividade_id, :categoria_id)
+  end
+
+  def default_status_id
+    1 # Defina um ID padrão para o status
   end
 end
