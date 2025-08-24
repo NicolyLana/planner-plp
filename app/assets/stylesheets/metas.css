@@ -1,7 +1,6 @@
-
 .centralizar-formulario {
-    max-width: 600px;  
-    margin: 0 auto;   
+    max-width: 600px; 
+    margin: 0 auto;    
     padding: 20px;
     background-color: white;
     border-radius: 8px;
@@ -10,8 +9,8 @@
 
 
 .input-tarefa {
-    width: 100%;  
-    padding: 2px;
+    width: 100%; 
+    padding: 10px;
     margin-top: 5px;
     border-radius: 6px;
     border: 1px solid #ccc;
@@ -46,6 +45,7 @@
     background-color: #574bff;
 }
 
+
 .field {
     margin-bottom: 20px;
 }
@@ -57,4 +57,3 @@
     color: #6c63ff;
     font-size: 28px;
 }
-
