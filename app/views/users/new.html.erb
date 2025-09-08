@@ -1,65 +1,85 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <title>PlpPlannerView</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<head>
+  <title>Planner</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
-    <%= javascript_importmap_tags %>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= javascript_include_tag 'application' %>
+  <%= stylesheet_link_tag 'login', 'data-turbo-track': 'reload' %>
 
-    <%= stylesheet_link_tag "users", "data-turbo-track": "reload" %>
-  </head>
-  <body>
-    <div class="signup-container">
-      <div class="signup-image">
-        <%= image_tag 'NewUser.png', alt: 'Organize o seu dia a dia' %>
-      </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-      <div class="signup-form">
-        <h2>CRIE UMA<br/>CONTA</h2>
-        <%= form_with(model: @user) do |form| %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= javascript_importmap_tags %>
 
-          <%= input_with_icon(form, :nome, 'User.svg', 'Nome Completo') %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'login', 'data-turbo-track': 'reload' %>
+</head>
 
-          <%= input_with_icon(form, :email, 'Email.svg', 'Email') %>
+<body>
+<div class="limiter">
+  <div class="container-loginnew" style="background-image: url('<%= asset_path('Teste.jpg') %>');">
+    <div class="wrap-loginnew">
+      <%= form_with(model: @user, class: "loginnew-form validate-form") do |form| %>
 
-          <%= password_input_with_icon(form, :raw_password, 'Password.svg', 'Senha') %>
+        <span class="loginnew-form-title p-b-34 p-t-27">
+            CRIE SUA CONTA
+        </span>
 
-          <%= password_input_with_icon(form, :raw_password_confirmation, 'Password.svg', 'Confirme sua Senha') %>
+        <div class="wrap-inputnew validate-input" data-validate="Digite seu nome">
+          <%= form.text_field :nome, class: "inputnew", placeholder: "" %>
+          <span class="focus-inputnew" data-placeholder="Nome Completo"></span>
+        </div>
 
-          <p><%= link_to "Já tenho cadastro", root_path %></p>
+        <div class="wrap-inputnew validate-input" data-validate="Digite seu email">
+          <%= form.email_field :email, class: "inputnew", placeholder: "" %>
+          <span class="focus-inputnew" data-placeholder="Email"></span>
+        </div>
 
-          <div class="form-group">
-            <%= form.submit "CADASTRAR", class: "btn-primary"%>
-          </div>
-        <% end %>
+        <div class="wrap-inputnew validate-input" data-validate="Digite sua senha">
+          <%= form.password_field :raw_password, class: "inputnew", placeholder: "" %>
+          <span class="focus-inputnew" data-placeholder="Senha"></span>
+        </div>
 
+        <div class="wrap-inputnew validate-input" data-validate="Confirme sua senha">
+          <%= form.password_field :raw_password_confirmation, class: "inputnew", placeholder: "" %>
+          <span class="focus-inputnew" data-placeholder="Confirme sua senha"></span>
+        </div>
 
-      </div>
+        <div class="container-loginnew-form-btn">
+          <%= form.submit "CADASTRAR", class: "loginnew-form-btn" %>
+        </div>
+
+        <div class="text-center p-t-90">
+          <%= link_to "Já tenho cadastro", root_path, class: "txt1" %>
+        </div>
+
+      <% end %>
     </div>
+  </div>
+</div>
 
-    <% if flash[:success] %>
-      <script>
-          document.addEventListener('DOMContentLoaded', function() {
-              toastr.success('<%= j flash[:success] %>');
-          });
-      </script>
-    <% elsif flash[:error] %>
-      <script>
-          document.addEventListener('DOMContentLoaded', function() {
-              toastr.error('<%= j flash[:error] %>');
-          });
-      </script>
-    <% end %>
+<% if flash[:success] %>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          toastr.success('<%= j flash[:success] %>');
+      });
+  </script>
+<% elsif flash[:error] %>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          toastr.error('<%= j flash[:error] %>');
+      });
+  </script>
+<% end %>
 
-
-  </body>
+</body>
 </html>
+
+
+

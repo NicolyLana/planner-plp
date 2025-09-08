@@ -1,57 +1,86 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <title>PlpPlannerView</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <title>Planner</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <%= javascript_importmap_tags %>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= javascript_include_tag 'application' %>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
-    <%= stylesheet_link_tag "login", "data-turbo-track": "reload" %> <!-- Link para o CSS específico -->
+  <!-- Toastr -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+  <%= javascript_importmap_tags %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= javascript_include_tag 'application' %>
+
+  <%= javascript_include_tag "login", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "login", "data-turbo-track": "reload" %>
 </head>
-<body id="login-page"> <!-- ID específico para login -->
-  <div class="signup-container">
-    <div class="signup-form">
-      <h2>FAÇA LOGIN</h2>
-      <%= form_with(url: create_session_users_path, local: true) do |form| %>
-        <%= input_with_icon(form, :email, 'Email.svg', 'Email') %>
-        <%= password_input_with_icon(form, :password, 'Password.svg', 'Senha') %>
 
-        <p><%= link_to "Esqueceu sua senha?", new_password_path %></p>
+<body>
 
-        <p><%= link_to "Não tem uma conta? Cadastre-se", new_user_path %></p>
+<div class="login-wrapper">
+  <div class="login-container">
+    <div class="login-card">
 
-        <div class="form-group">
-          <%= form.submit "ENTRAR", class: "btn-primary"%>
+      <%= form_with(url: create_session_users_path, local: true, html: { class: "login-form validate-form" }) do |form| %>
+          <span class="login-form-title p-b-43">
+            LOGIN
+          </span>
+
+        <div class="input-wrapper validate-input" data-validate="Digite um email válido: ex@abc.com">
+          <%= form.email_field :email, class: "input-field", placeholder: " " %>
+          <span class="input-focus"></span>
+          <span class="input-label">Email</span>
         </div>
-      <% end %>
-    </div>
 
-    <div class="signup-image">
-      <%= image_tag 'NewUser.png', alt: 'Bem-vindo de volta!' %>
+        <div class="input-wrapper validate-input" data-validate="Senha é obrigatória">
+          <%= form.password_field :password, class: "input-field", placeholder: " " %>
+          <span class="input-focus"></span>
+          <span class="input-label">Senha</span>
+        </div>
+
+        <div class="text-right p-t-10 p-b-10">
+          <%= link_to "Esqueceu sua senha?", new_password_path, class: "text-secondary" %>
+        </div>
+
+        <div class="button-wrapper">
+          <%= form.submit "ENTRAR", class: "login-button" %>
+        </div>
+
+        <div class="text-center p-t-15">
+          <%= link_to "Não tem uma conta? Cadastre-se", new_user_path, class: "text-secondary" %>
+        </div>
+
+      <% end %>
+
+      <div class="login-image" style="background-image: url('<%= asset_path("Teste.jpg") %>');"></div>
     </div>
   </div>
+</div>
 
-  <% if flash[:success] %>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            toastr.success('<%= j flash[:success] %>');
-        });
-    </script>
-  <% elsif flash[:error] %>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            toastr.error('<%= j flash[:error] %>');
-        });
-    </script>
-  <% end %>
+<% if flash[:success] %>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          toastr.success('<%= j flash[:success] %>');
+      });
+  </script>
+<% elsif flash[:error] %>
+  <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          toastr.error('<%= j flash[:error] %>');
+      });
+  </script>
+<% end %>
+
 </body>
 </html>
+
+

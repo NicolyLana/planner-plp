@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.3.4"
+ruby "3.3.7"
 
 gem 'bcrypt', '~> 3.1.7'
 
