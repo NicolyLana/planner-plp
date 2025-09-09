@@ -1,41 +1,48 @@
-<%= stylesheet_link_tag 'tarefas', media: 'all' %>
+<div class="limiter">
+  <div class="container-loginnew" style="background-image: url('<%= asset_path("tarefa.png") %>');">
+    <div class="wrap-loginnew">
+      <%= form_with(model: @tarefa, local: true, class: "loginnew-form validate-form") do |form| %>
 
-<body class = "tarefa">
-<%= form_with(model: @tarefa, local: true) do |form| %>
-  <div class="form-container centralizar-formulario"> 
-    <h1 class="titulo-pagina">Nova Tarefa</h1>
+        <span class="loginnew-form-title">
+          Nova Tarefa
+        </span>
 
-    <div class="field">
-      <%= form.label :data, "Data", class: "label-tarefa" %>
-      <%= form.date_field :data, class: "input-tarefa" %>
-    </div>
+        <div class="wrap-inputnew">
+          <%# Adicionado placeholder: " " %>
+          <%= form.date_field :data, class: "inputnew", placeholder: " " %>
+          <span class="focus-inputnew" data-placeholder="Data"></span>
+        </div>
 
-    <div class="field">
-      <%= form.label :descricao, "Descrição", class: "label-tarefa" %>
-      <%= form.text_area :descricao, rows: 3, class: "input-tarefa", placeholder: "Ex: Correr, almoçar, revisar PLP, prova" %>
-    </div>
+        <div class="wrap-inputnew">
+          <%# Adicionado placeholder: " " %>
+          <%= form.text_area :descricao, rows: 3, class: "inputnew", placeholder: " " %>
+          <span class="focus-inputnew" data-placeholder="Descrição"></span>
+        </div>
 
-    <div class="field">
-      <%= form.label :bloco, "Por quanto tempo você planeja realizar esta atividade?", class: "label-tarefa" %>
-      <%= form.text_field :bloco, class: "input-tarefa", placeholder: "Ex: 30 minutos" %>
-    </div>
+        <div class="wrap-inputnew">
+          <%# Alterado para placeholder: " " %>
+          <%= form.text_field :bloco, class: "inputnew", placeholder: " " %>
+          <span class="focus-inputnew" data-placeholder="Tempo planejado (ex: 30 minutos)"></span>
+        </div>
 
-    <div class="field">
-      <%= form.label :categoria_id, "Categoria", class: "label-tarefa" %>
-      <%= form.collection_select :categoria_id, Categoria.all, :id, :nome, { prompt: "Selecione uma Categoria" }, { class: "input-tarefa" } %>
-    </div>
+        <div class="wrap-inputnew">
+          <%= form.collection_select :categoria_id, Categoria.all, :id, :nome,
+                { prompt: "Selecione uma Categoria" }, { class: "inputnew" } %>
+          <span class="focus-inputnew" data-placeholder="Categoria"></span>
+        </div>
 
-    <!-- Novo campo para selecionar o turno -->
-    <div class="field">
-      <%= form.label :turno, "Em qual turno você pretende realizar a atividade?", class: "label-tarefa" %>
-      <%= form.select :turno, [["Manhã", "Manhã"], ["Tarde", "tarde"], ["Noite", "noite"], ["Madrugada", "madrugada"]], { prompt: "Selecione um turno" }, { class: "input-tarefa" } %>
-    </div>
+        <div class="wrap-inputnew">
+          <%= form.select :turno,
+                [["Manhã", "Manhã"], ["Tarde", "Tarde"], ["Noite", "Noite"], ["Madrugada", "Madrugada"]],
+                { prompt: "Selecione um turno" }, { class: "inputnew" } %>
+          <span class="focus-inputnew" data-placeholder="Turno"></span>
+        </div>
 
-    <div class="actions">
-      <%= form.submit "Criar Tarefa", class: "btn-primary" %>
+        <div class="container-loginnew-form-btn">
+          <%= form.submit "Criar Tarefa", class: "loginnew-form-btn" %>
+        </div>
+
+      <% end %>
     </div>
   </div>
-<% end %>
-
-</body>
-
+</div>

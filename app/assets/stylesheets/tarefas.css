@@ -1,79 +1,126 @@
-body.tarefa, html.tarefa {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #7fbfff; 
+.limiter {
+  width: 100%;
+  margin: 0 auto;
 }
 
-.centralizar-formulario {
-    max-width: 1000px; 
-    width: 100%; /* Certifica-se que o formulário ocupe toda a largura disponível */
-    padding: 40px; /* Diminui o padding para ajustar melhor a margem */
-    background-color: #F0F4FF;
-    border-radius: 15px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: 'Poppins', sans-serif;
+.container-loginnew {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-position: center;
+  background-size: cover;
+  position: relative;
 }
 
-.field {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-    width: 100%;
+.wrap-loginnew {
+  width: 500px;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 50px 40px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
 }
 
-.field label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #4a4a4a;
+.loginnew-form-title {
+  font-size: 28px;
+  color: #E0E0E0;
+  line-height: 1.5;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 35px;
 }
 
-.input-tarefa {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 20px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+.wrap-inputnew {
+  position: relative;
+  width: 100%;
+  margin-bottom: 32px;
 }
 
-.btn-primary {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    background-color: #6c63ff;
-    border: none;
-    border-radius: 20px;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
+.inputnew {
+  font-size: 16px;
+  color: #F8F8F8;
+  display: block;
+  width: 100%;
+  background: transparent;
+  padding: 20px 15px 8px 15px;
+  border: none;
+  border-bottom: 2px solid #888;
+  outline: none;
 }
 
-.btn-primary:hover {
-    background-color: #574bff;
+.inputnew:focus {
+  border-bottom: 2px solid #6c63ff;
 }
 
-.titulo-pagina {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #7d5acf;
-    font-size: 32px; 
-    font-family: 'Arial', sans-serif; 
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px; 
-    border-bottom: 2px solid #6c63ff;
-    letter-spacing: 1px; 
+.focus-inputnew {
+  position: absolute;
+  top: 12px;
+  left: 15px;
+  pointer-events: none;
+  color: #B0B0B0;
+  font-size: 16px;
+  transition: 0.3s ease all;
 }
 
-.actions {
-    text-align: center;
-    margin-top: 20px;
-    width: 100%; /* O contêiner das actions ocupa 100% da largura */
-    display: flex; /* Usar flexbox para o alinhamento */
-    justify-content: center; /* Alinha o botão ao centro */
+.inputnew:focus + .focus-inputnew,
+.inputnew:not(:placeholder-shown) + .focus-inputnew {
+  top: -10px;
+  left: 10px;
+  font-size: 12px;
+  color: #8C83FF;
+}
+
+.container-loginnew-form-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.loginnew-form-btn {
+  font-size: 16px;
+  color: #fff;
+  background: linear-gradient(135deg, #6c63ff, #4c47e6);
+  border: none;
+  border-radius: 16px;
+  padding: 12px 40px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 100%;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+}
+
+.loginnew-form-btn:hover {
+  background: linear-gradient(135deg, #574bff, #3c37c9);
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.4);
+}
+
+textarea.inputnew {
+  resize: none;
+  min-height: 80px;
+}
+
+select.inputnew {
+  background: transparent;
+  color: #F8F8F8;
+  appearance: none;
+  border: none;
+  border-bottom: 2px solid #888;
+  cursor: pointer;
+}
+
+select.inputnew option {
+  background: #2D2D2D;
+  color: #F8F8F8;
+}
+
+.inputnew::-webkit-calendar-picker-indicator {
+  display: block !important;
+  -webkit-appearance: auto !important;
+  opacity: 0.7 !important;
+  cursor: pointer;
+  filter: invert(1);
 }
