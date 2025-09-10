@@ -1,5 +1,5 @@
 body {
-    font-family: 'Rancho', sans-serif;
+    font-family: Montserrat-Regular;
     margin: 0;
     padding: 0;
     background-color: #FFFFFF;
@@ -9,15 +9,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #7360F1;
-    height: 10px;
-    padding: 50px 50px;
+    background-color: #333;
+    height: 60px;          /* altura fixa menor */
+    padding: 10px 30px;    /* padding menor */
     color: white;
 }
 
 .logo h1 {
-    font-family: 'Rancho', sans-serif;
-    font-size: 75px;
+    font-family: Montserrat-Regular;
+    font-size: 22px;
     font-weight: 400;
     line-height: 93.16px;
     text-align: center;
