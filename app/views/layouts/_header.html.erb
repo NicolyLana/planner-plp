@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <title>PLPlanner</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= stylesheet_link_tag 'header', media: 'all' %>
-    <link href="https://fonts.googleapis.com/css2?family=Rancho&display=swap" rel="stylesheet">
+  <title>Planify</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag 'header', media: 'all' %>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="main-header">
-        <div class="logo">
-            <h1>PLPlanner</h1>
-        </div>
-        <div class="user-icon">
-            <%= image_tag 'user-icon.svg', alt: 'usuário' %>
-            <div class="dropdown-content">
-            <%= link_to 'Logout', logout_path, method: :delete %>
-            </div>
-        </div>
-    </header>
-    <%= yield %>
+<header class="main-header">
+  <div class="logo">
+    <%= image_tag 'LogoTipo.png', alt: 'Logo Planify', class: 'logo-img' %>
+    <h1>Planify</h1>
+  </div>
+
+  <div class="user-icon">
+    <%= image_tag 'menu-icon.png', alt: 'usuário' %>
+    <div class="dropdown-content">
+      <%= link_to 'Logout', logout_path, method: :delete %>
+    </div>
+  </div>
+</header>
+
+<%= yield %>
+
+<%= javascript_include_tag 'header', defer: true %>
 </body>
 </html>
+
+
