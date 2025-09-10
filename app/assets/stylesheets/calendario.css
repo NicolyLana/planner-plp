@@ -1,225 +1,208 @@
-.calendar-container {
-    display: flex;
+/* Estilos Gerais */
+body {
+  font-family: Montserrat-Regular;
+  background: 
+    linear-gradient(rgba(180, 200, 220, 20), rgba(255, 255, 255, 0.6)), 
+    url('\tarefa.png') no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
+main {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+}
+
+#planner {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px; /* Mais largo */
+}
+
+/* Calendário */
 .calendar {
-    flex: 2;
-    font-family: 'Poppins', sans-serif;
-    width: 1214px;
-    height: 780px;
-    position: absolute;
-    top: 163px;
-    left: 34px;
-    border-radius: 35px;
-    margin: 0 auto;
+  flex-grow: 1;
+  background: rgba(255, 255, 255, 0.16); /* branco com 60% opacidade */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 5);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
 }
 
 .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.calendar-header button {
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
 .calendar-header h2 {
-    margin: 0;
+  margin: 0;
+  font-size: 2em;
+  font-weight: 700;
+  color: #050000;
+}
+
+.calendar-header button {
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.calendar-header button:hover {
+  background: rgba(255, 255, 255, 0.16); /* branco com 60% opacidade */
 }
 
 .calendar-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 10px;
-    background: #C8D1EB66;
-    border-radius: 35px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    line-height: 30px;
-    text-align: center;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.calendar-table th, .calendar-table td {
-    padding: 10px;
-    text-align: center;
-    border: none; 
-}
-
-.calendar-mes {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-style: italic;
-    font-size: 35px;
-    line-height: 52.5px;
-    text-align: center;
+.calendar-table th {
+  text-align: center;
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.16); /* branco com 60% opacidade */
+  color: #333;
+  font-weight: 600;
+  border-bottom: 2px solid #e0e0e0;
 }
 
 .calendar-table td {
-    width: 158px;
-    height: 135.52px;
-    border-radius: 35px;
-    background: rgba(200, 209, 235, 1);
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 30px;
-    text-align: center;
-    vertical-align: top;
+  padding: 22px;
+  background: rgba(110, 96, 96, 0.16); /* branco com 60% opacidade */
+  vertical-align: top;
+  height: 120px; /* Mais espaçado */
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.16); /* branco com 60% opacidade */
 }
 
+.calendar-table td:hover {
+  background: rgba(110, 96, 96, 0.16); /* branco com 60% opacidade */
+}
+
+/* Itens (tarefas/metas) */
+.tarefa-item, .meta-item {
+  padding: 6px 10px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  font-size: 0.9em;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.tarefa-item:hover, .meta-item:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* Sidebar */
+/* Sidebar Única (com botões + filtro) */
 .sidebar {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    right: 10px; 
-    top: 163px;
-    width: 200px; 
-    padding: 15px;
-    border-radius: 15px; 
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.16); /* branco com 60% opacidade */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 5);
+  align-items: stretch;
+  flex-shrink: 0;
+}
+
+/* Botões Sidebar */
+.sidebar a {
+  display: block;
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
 .btn-tarefa {
-    margin-top: 35px; 
-    padding: 12px 18px;
-    color: #fff;
-    border: none;
-    border-radius: 30px; 
-    cursor: pointer;
-    width: 100%; 
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-    font-style: italic;
-    font-weight: 600; 
-    text-decoration: none; 
-    font-size: inherit; 
+  background: #6c63ff;
+  color: #fff;
 }
-
-.btn-meta, .btn-relatorios {
-    margin-top: 10px; 
-    padding: 12px 18px;
-    color: #fff;
-    border: none;
-    border-radius: 30px; 
-    cursor: pointer;
-    width: 100%; 
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-    font-style: italic;
-    font-weight: 600; 
-    text-decoration: none; 
-    font-size: inherit; 
-}
-
-.btn-tarefa {
-    background: linear-gradient(45deg, #c05ce7, #d980ff); 
+.btn-tarefa:hover {
+  background: #5548d6;
 }
 
 .btn-meta {
-    background: linear-gradient(45deg, #6580e3, #7eaaff); 
+  background: #ff6584;
+  color: #fff;
+}
+.btn-meta:hover {
+  background: #e04365;
 }
 
 .btn-relatorios {
-    background: linear-gradient(45deg, #7fbfff, #9ce2ff); 
+  background: #00b894;
+  color: #fff;
+}
+.btn-relatorios:hover {
+  background: #009c7c;
 }
 
-.btn-tarefa:hover, .btn-meta:hover, .btn-relatorios:hover {
-    opacity: 0.9; 
-    text-decoration: none; 
-}
-
-
+/* Bloco de Navegação */
 .navigate {
-    font-family: 'Poppins', sans-serif;
-    background-color: #F0F4FF; 
-    border-radius: 15px;
-    padding: 10px 20px;
-    width: 200px;
-    text-align: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    bottom: -60px;
-    right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
 }
+
 .navigate h3 {
-    font-weight: 600;
-    font-style: italic;
-    color: #000;
-    margin-bottom: 30px;
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #444;
+  text-align: center;
 }
 
 .navigate-select {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; 
-    margin-bottom: 15px; 
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .navigate-select select {
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    padding: 10px;
-    width: 100%;
-    border-radius: 20px; 
-    border: 1px solid #ddd;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-    background-color: #fff;
-    text-align: center; 
-    appearance: none; 
-    background-image: none; 
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+  font-weight: 500;
 }
 
 .navigate-btn {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-style: italic;
-    background-color: #c05ce7; 
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
+  background: #6c63ff;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
 }
-
 .navigate-btn:hover {
-    opacity: 0.9; 
+  background: #5548d6;
 }
 
-.tarefas-list {
-    margin-top: 5px;
-}
-  
-.tarefas-list div {
-    font-size: 12px;
-    color: #333;
-    background-color: #f2f2f2;
-    padding: 2px;
-    margin: 2px 0;
-    border-radius: 3px;
-}
 
-.calendar-table td div {
-    font-size: 12px;
-}
-   
-.calendar-table td div {
-    font-size: 12px; 
-    color: #fdfdfd; 
-    margin-top: 2px;
-    padding: 0.5px; 
-    border-radius: 10px;
-}
-  
-/* Estilos das categorias de tarefas */
+/* Classes de categoria para diferenciação visual (ainda em P&B) */
+/* Você pode ajustar essas cores para diferentes tons de cinza ou estilos de borda */
 .tarefa-diaria {
     background-color: #ff0080; 
 }
@@ -296,26 +279,106 @@
     background-color: #FF00FF; /* Magenta */
 }
 
+/* Fundo escuro atrás do modal */
+/* Fundo escuro transparente (overlay) */
+.modal {
+  display: none; /* Começa escondido, só aparece com JavaScript */
+  position: fixed;
+  z-index: 2000; /* Garante que fique acima de tudo */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* Fundo semitransparente com degradê sutil */
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4));
+  overflow: auto;
+  display: flex; /* Para centralizar o modal-content */
+  align-items: center;
+  justify-content: center;
+}
 
-.show-more-btn {
-    display: flex;          
-    justify-content: center;
-    align-items: center;
-    background-color: #9c65e3; 
-    color: white; 
-    border: none; 
-    padding: 8px 16px; 
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px; 
-    margin: 4px 2px; 
-    cursor: pointer; 
-    border-radius: 8px; 
-    transition: background-color 0.3s ease; 
+/* Caixa do modal (com efeito de vidro fosco e sombra) */
+.modal-content {
+  /* Fundo transparente com efeito de vidro fosco */
+  background: rgba(255, 255, 255, 0.15); /* Fundo branco bem transparente */
+  backdrop-filter: blur(10px); /* O efeito de desfoque */
+  -webkit-backdrop-filter: blur(10px); /* Compatibilidade Safari */
+  border-radius: 18px; /* Cantos mais arredondados */
+  padding: 30px 40px; /* Mais preenchimento interno */
+  width: 90%;
+  max-width: 450px; /* Um pouco mais compacto */
+  /* Sombra mais suave e espalhada */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1); /* Sombra e uma borda sutil */
+  position: relative;
+  text-align: center; /* Centraliza o conteúdo */
+  animation: fadeIn 0.4s ease-out forwards; /* Adiciona a animação de entrada */
 }
-  
-.show-more-btn:hover {
-    background-color: #4e00b3;
+
+/* Título do modal */
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 1.8em; /* Título um pouco maior */
+  font-weight: 700;
+  color: #fff; /* Cor do texto mais clara para combinar com o fundo transparente */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Sombra no texto */
+  margin-bottom: 15px;
 }
-  
+
+/* Texto da descrição */
+.modal-content p {
+  font-size: 1.1em; /* Texto um pouco maior */
+  margin: 15px 0 25px;
+  color: #eee; /* Cor do texto mais clara */
+  line-height: 1.6em;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Sombra no texto */
+}
+
+/* Botão "Marcar como Concluída" */
+#markCompleteBtn {
+  display: inline-block;
+  padding: 14px 25px; /* Mais preenchimento */
+  background: linear-gradient(135deg, #6c63ff, #8a7dff); /* Degradê no botão */
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 10px; /* Cantos mais arredondados */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4); /* Sombra no botão */
+}
+
+#markCompleteBtn:hover {
+  background: linear-gradient(135deg, #5548d6, #6c63ff); /* Degradê ao passar o mouse */
+  transform: translateY(-2px); /* Efeito de "levantar" */
+  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.6);
+}
+
+/* Botão fechar (X) */
+.close {
+  position: absolute;
+  top: 15px; /* Ajustado */
+  right: 20px; /* Ajustado */
+  font-size: 1.8em; /* Maior */
+  color: #ddd; /* Cor mais clara */
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.close:hover {
+  color: #fff; /* Fica branco ao passar o mouse */
+  transform: rotate(90deg); /* Gira ao passar o mouse */
+}
+
+/* Animação de entrada do modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
