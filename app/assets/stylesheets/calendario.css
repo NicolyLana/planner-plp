@@ -413,3 +413,175 @@ main {
     position: relative;
     z-index: 0;
 }
+
+#taskModal .modal-content {
+  background: rgba(255, 255, 255, 0.15); /* Fundo branco bem transparente */
+  backdrop-filter: blur(10px); /* O efeito de desfoque */
+  -webkit-backdrop-filter: blur(10px); /* Compatibilidade Safari */
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+}
+
+.close-task-modal {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-task-modal:hover,
+.close-task-modal:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* Conteúdo do novo modal */
+#dayModal .modal-content {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 30px 40px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  text-align: center;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Botão de fechamento para o novo modal */
+.close-day-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.8em;
+  color: #ddd;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.close-day-modal:hover {
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+/* Título e descrição do modal de conclusão (ajustados para #taskModal) */
+#taskModal .modal-content h2 {
+  margin-top: 0;
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  margin-bottom: 15px;
+}
+
+#taskModal .modal-content p {
+  font-size: 1.1em;
+  margin: 15px 0 25px;
+  color: #eee;
+  line-height: 1.6em;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Botão de "Marcar como Concluída" no modal de conclusão */
+#markCompleteBtn {
+  display: inline-block;
+  padding: 14px 25px;
+  background: linear-gradient(135deg, #6c63ff, #8a7dff);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4);
+}
+
+#markCompleteBtn:hover {
+  background: linear-gradient(135deg, #5548d6, #6c63ff);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.6);
+}
+
+/* Estilos do botão de "Ver todas" e da lista de tarefas do dia */
+.ver-todas-btn {
+  background-color: #6c63ff;
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-align: center;
+  margin-top: 6px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.ver-todas-btn:hover {
+  opacity: 0.8;
+}
+
+#modalDayTitle {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-task-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.modal-task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: 1em;
+  border-left: 5px solid;
+}
+
+.modal-task-item .complete-btn {
+  background: #00b894;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8em;
+  padding: 5px 10px;
+  transition: opacity 0.2s ease;
+}
+
+.modal-task-item .complete-btn:hover {
+  opacity: 0.8;
+}
+
+.add-tarefa-btn {
+  background: #00b894;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.add-tarefa-btn:hover {
+  opacity: 0.9;
+}
+
