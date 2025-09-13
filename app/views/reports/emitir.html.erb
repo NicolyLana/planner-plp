@@ -1,183 +1,281 @@
-<body class="relatorio-body">
-  <div class="relatorio-container">
-    <h1 class="titulo-principal">Relatório de Produtividade</h1>
+<body class="relatorio-body" data-theme="light">
+<button id="toggleTheme" class="toggle-btn">🌙 Modo Escuro</button>
 
-    <section class="metas-section card">
-      <h2 class="subtitulo">Metas</h2>
-      <p>Total de Metas: <strong><%= @total_metas %></strong></p>
-      <p>Metas Cumpridas: <strong><%= @metas_cumpridas %></strong> (<%= @porcentagem_metas_cumpridas %>%)</p>
-    </section>
+<div class="relatorio-container">
+  <h1 class="titulo-principal">Visão Geral da Produtividade</h1>
 
-    <section class="tarefas-section card">
-      <h2 class="subtitulo">Tarefas</h2>
-      <p>Total de Tarefas: <strong><%= @total_tarefas %></strong></p>
-      <p>Tarefas Executadas: <strong><%= @tarefas_executadas %></strong> (<%= @porcentagem_tarefas_executadas %>%)</p>
-    </section>
+  <section class="resumo-section card">
+    <h2 class="subtitulo">Resumo</h2>
+    <p class="resumo-texto"><strong>Total de Metas:</strong> <%= @total_metas %> | Cumpridas: <%= @metas_cumpridas %> (<%= @porcentagem_metas_cumpridas %>%)</p>
+    <p class="resumo-texto"><strong>Total de Tarefas:</strong> <%= @total_tarefas %> | Executadas: <%= @tarefas_executadas %> (<%= @porcentagem_tarefas_executadas %>%)</p>
+  </section>
 
-    <section class="produtividade-grafico card">
-      <h3>Produtividade por Semana</h3>
-      <canvas id="produtividadeSemanal"></canvas>
-    </section>
+  <section class="produtividade-grafico card">
+    <h2 class="subtitulo">Evolução Mensal</h2>
+    <canvas id="produtividadeMensal"></canvas>
+  </section>
 
-    <section class="produtividade-grafico card">
-      <h3>Produtividade por Mês</h3>
-      <canvas id="produtividadeMensal"></canvas>
-    </section>
+  <section class="produtividade-grafico card">
+    <h2 class="subtitulo">Desempenho Semanal</h2>
+    <canvas id="produtividadeSemanal"></canvas>
+  </section>
 
-    <section class="produtividade-grafico card">
-      <h3>Produtividade por Turno</h3>
-      <canvas id="produtividadeTurnos"></canvas>
-    </section>
+  <section class="produtividade-grafico card">
+    <h2 class="subtitulo">Distribuição por Turnos</h2>
+    <canvas id="produtividadeTurnos"></canvas>
+  </section>
 
-    <section class="tarefas-categoria card">
-      <h3>Categorias de Tarefas Mais Realizadas</h3>
-      <% if @tarefas_por_categoria.any? %>
-        <table class="tabela-relatorio">
-          <thead>
-            <tr>
-              <th>Categoria</th>
-              <th>Quantidade de Tarefas Concluídas</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @tarefas_por_categoria.each do |categoria_id, quantidade| %>
-              <tr>
-                <td><%= Categoria.find(categoria_id).nome %></td>
-                <td><strong><%= quantidade %></strong></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% else %>
-        <p>Nenhuma tarefa realizada por categoria até o momento.</p>
-      <% end %>
-    </section>
+  <section class="tarefas-categoria card">
+    <h2 class="subtitulo">Tarefas por Categoria</h2>
+    <% if @tarefas_por_categoria.any? %>
+      <table class="tabela-relatorio">
+        <thead>
+        <tr>
+          <th>Categoria</th>
+          <th>Tarefas Concluídas</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @tarefas_por_categoria.each do |categoria_id, quantidade| %>
+          <tr>
+            <td><%= Categoria.find(categoria_id).nome %></td>
+            <td><strong><%= quantidade %></strong></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>Não há tarefas concluídas por categoria até o momento.</p>
+    <% end %>
+  </section>
 
-    <section class="metas-categoria card">
-      <h3>Categorias de Metas Mais Realizadas</h3>
-      <% if @metas_por_categoria.any? %>
-        <ul class="lista-relatorio">
-          <% @metas_por_categoria.each do |categoria_id, quantidade| %>
-            <li><%= Categoria.find(categoria_id).nome %>: <strong><%= quantidade %></strong> metas concluídas</li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p>Nenhuma meta realizada por categoria até o momento.</p>
-      <% end %>
-    </section>
-  </div>
+  <section class="metas-categoria card">
+    <h2 class="subtitulo">Metas por Categoria</h2>
+    <% if @metas_por_categoria.any? %>
+      <table class="tabela-relatorio">
+        <thead>
+        <tr>
+          <th>Categoria</th>
+          <th>Metas Concluídas</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @metas_por_categoria.each do |categoria_id, quantidade| %>
+          <tr>
+            <td><%= Categoria.find(categoria_id).nome %></td>
+            <td><strong><%= quantidade %></strong></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>Não há metas concluídas por categoria até o momento.</p>
+    <% end %>
+  </section>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    // Produtividade por Semana
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const toggleBtn = document.getElementById('toggleTheme');
+    const body = document.body;
+
+    toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+        if (body.classList.contains('dark-theme')) {
+            toggleBtn.textContent = '☀️ Modo Claro';
+        } else {
+            toggleBtn.textContent = '🌙 Modo Escuro';
+        }
+        atualizarResumoTema();
+        atualizarGraficoTema();
+    });
+
+    const resumoTextos = document.querySelectorAll('.resumo-texto');
+    function atualizarResumoTema() {
+        resumoTextos.forEach(p => {
+            p.style.color = body.classList.contains('dark-theme') ? '#ddd' : '#444';
+        });
+    }
+    atualizarResumoTema();
+
     const tarefasSemanais = <%= @tarefas_por_semana.to_json.html_safe %>;
-    const labelsSemana = Object.keys(tarefasSemanais);
-    const dataSemanal = Object.values(tarefasSemanais);
-
-    var ctxSemana = document.getElementById('produtividadeSemanal').getContext('2d');
-    var produtividadeSemanalChart = new Chart(ctxSemana, {
-      type: 'bar',
-      data: {
-        labels: labelsSemana,
-        datasets: [{
-          label: 'Tarefas Concluídas por Semana',
-          data: dataSemanal,
-          backgroundColor: 'rgba(54, 162, 235, 0.5)',
-          borderColor: 'rgba(54, 162, 235, 1)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: { 
-            beginAtZero: true 
-          }
-        }
-      }
-    });
-
-    // Produtividade por Mês
-    const metasMensais = <%= @metas_por_mes.to_json.html_safe %> || {};
-    const labelsMes = Object.keys(metasMensais);
-    const dataMensal = Object.values(metasMensais);
-
-    var ctxMes = document.getElementById('produtividadeMensal').getContext('2d');
-    var produtividadeMensalChart = new Chart(ctxMes, {
-      type: 'line',
-      data: {
-        labels: labelsMes,
-        datasets: [{
-          label: 'Metas Cumpridas por Mês',
-          data: dataMensal,
-          fill: false,
-          borderColor: 'rgba(75, 192, 192, 1)',
-          tension: 0.1
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: { 
-            beginAtZero: true 
-          }
-        }
-      }
-    });
-
-    // Produtividade por Turno
+    const metasMensais = <%= @metas_por_mes.to_json.html_safe %>;
     const tarefasPorTurno = <%= @tarefas_por_turno.to_json.html_safe %>;
-    
-    // Map to define correct order of shifts
-    const labelsTurnoMap = {
-      'Madrugada': 0,
-      'Manhã': 1,
-      'Tarde': 2,
-      'Noite': 3
-    };
 
-    // Sorting the turn data based on the predefined order
-    const sortedTurnos = Object.keys(tarefasPorTurno).sort((a, b) => labelsTurnoMap[a] - labelsTurnoMap[b]);
-    const dataTurno = sortedTurnos.map(turno => tarefasPorTurno[turno]);
-
-    var ctxTurno = document.getElementById('produtividadeTurnos').getContext('2d');
-    var produtividadeTurnosChart = new Chart(ctxTurno, {
-      type: 'pie',
-      data: {
-        labels: sortedTurnos,
-        datasets: [{
-          label: 'Tarefas Concluídas por Turno',
-          data: dataTurno,
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.5)',
-            'rgba(54, 162, 235, 0.5)',
-            'rgba(75, 192, 192, 0.5)',
-            'rgba(153, 102, 255, 0.5)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-          tooltip: {
-            callbacks: {
-              label: function(tooltipItem) {
-                return tooltipItem.label + ': ' + tooltipItem.raw + ' tarefas';
-              }
-            }
-          }
+    function coresTema() {
+        if (body.classList.contains('dark-theme')) {
+            return {
+                text: '#ddd',
+                grid: '#555',
+                background: 'rgba(75,192,192,0.2)',
+                borderLine: 'rgba(75,192,192,1)',
+                barBg: 'rgba(54,162,235,0.5)',
+                barBorder: 'rgba(54,162,235,1)',
+                pieColors: [
+                    'rgba(255,99,132,0.5)',
+                    'rgba(54,162,235,0.5)',
+                    'rgba(75,192,192,0.5)',
+                    'rgba(153,102,255,0.5)'
+                ],
+                pieBorders: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54,162,235,1)',
+                    'rgba(75,192,192,1)',
+                    'rgba(153,102,255,1)'
+                ]
+            };
+        } else {
+            return {
+                text: '#333',
+                grid: '#ddd',
+                background: 'rgba(75,192,192,0.1)',
+                borderLine: 'rgba(75,192,192,1)',
+                barBg: 'rgba(54,162,235,0.5)',
+                barBorder: 'rgba(54,162,235,1)',
+                pieColors: [
+                    'rgba(255,99,132,0.5)',
+                    'rgba(54,162,235,0.5)',
+                    'rgba(75,192,192,0.5)',
+                    'rgba(153,102,255,0.5)'
+                ],
+                pieBorders: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54,162,235,1)',
+                    'rgba(75,192,192,1)',
+                    'rgba(153,102,255,1)'
+                ]
+            };
         }
-      }
-    });
-  </script>
+    }
+
+    // --- Criação dos gráficos ---
+    let chartMensal, chartSemanal, chartTurnos;
+
+    function criarGraficos() {
+        const cores = coresTema();
+
+        // Evolução Mensal
+        chartMensal = new Chart(document.getElementById('produtividadeMensal'), {
+            type: 'line',
+            data: {
+                labels: Object.keys(metasMensais),
+                datasets: [{
+                    label: 'Metas Cumpridas por Mês',
+                    data: Object.values(metasMensais),
+                    fill: false,
+                    borderColor: cores.borderLine,
+                    backgroundColor: cores.background,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { labels: { color: cores.text } },
+                    tooltip: { titleColor: cores.text, bodyColor: cores.text, backgroundColor: '#333' }
+                },
+                scales: {
+                    x: {
+                        offset: true,
+                        ticks: {
+                            color: cores.text,
+                            maxRotation: 0,
+                            minRotation: 0
+                        },
+                        grid: { color: cores.grid }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: cores.text },
+                        grid: { color: cores.grid }
+                    }
+                }
+            }
+        });
+
+        // Desempenho Semanal
+        chartSemanal = new Chart(document.getElementById('produtividadeSemanal'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(tarefasSemanais),
+                datasets: [{
+                    label: 'Tarefas Concluídas por Semana',
+                    data: Object.values(tarefasSemanais),
+                    backgroundColor: cores.barBg,
+                    borderColor: cores.barBorder,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { labels: { color: cores.text } },
+                    tooltip: { titleColor: cores.text, bodyColor: cores.text, backgroundColor: '#333' }
+                },
+                scales: {
+                    x: { ticks: { color: cores.text }, grid: { color: cores.grid } },
+                    y: { ticks: { color: cores.text }, grid: { color: cores.grid }, beginAtZero: true }
+                }
+            }
+        });
+
+        // Distribuição por Turnos
+        const labelsTurnoMap = { 'Madrugada': 0, 'Manhã': 1, 'Tarde': 2, 'Noite': 3 };
+        const sortedTurnos = Object.keys(tarefasPorTurno).sort((a,b) => labelsTurnoMap[a] - labelsTurnoMap[b]);
+        const dataTurno = sortedTurnos.map(turno => tarefasPorTurno[turno]);
+
+        chartTurnos = new Chart(document.getElementById('produtividadeTurnos'), {
+            type: 'pie',
+            data: {
+                labels: sortedTurnos,
+                datasets: [{
+                    label: 'Tarefas por Turno',
+                    data: dataTurno,
+                    backgroundColor: cores.pieColors,
+                    borderColor: cores.pieBorders,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { labels: { color: cores.text } },
+                    tooltip: { titleColor: cores.text, bodyColor: cores.text, backgroundColor: '#333' }
+                }
+            }
+        });
+    }
+
+    function atualizarGraficoTema() {
+        const cores = coresTema();
+
+        [chartMensal, chartSemanal].forEach(chart => {
+            chart.options.plugins.legend.labels.color = cores.text;
+            chart.options.plugins.tooltip.titleColor = cores.text;
+            chart.options.plugins.tooltip.bodyColor = cores.text;
+            chart.options.scales.x.ticks.color = cores.text;
+            chart.options.scales.x.grid.color = cores.grid;
+            chart.options.scales.y.ticks.color = cores.text;
+            chart.options.scales.y.grid.color = cores.grid;
+
+            if (chart === chartMensal) {
+                chart.data.datasets[0].borderColor = cores.borderLine;
+                chart.data.datasets[0].backgroundColor = cores.background;
+            } else {
+                chart.data.datasets[0].backgroundColor = cores.barBg;
+                chart.data.datasets[0].borderColor = cores.barBorder;
+            }
+            chart.update();
+        });
+
+        chartTurnos.data.datasets[0].backgroundColor = cores.pieColors;
+        chartTurnos.data.datasets[0].borderColor = cores.pieBorders;
+        chartTurnos.options.plugins.legend.labels.color = cores.text;
+        chartTurnos.options.plugins.tooltip.titleColor = cores.text;
+        chartTurnos.options.plugins.tooltip.bodyColor = cores.text;
+        chartTurnos.update();
+    }
+
+    criarGraficos();
+</script>
 </body>
