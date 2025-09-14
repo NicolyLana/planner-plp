@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   require 'bcrypt'
 
+  has_many :tarefas
+  has_many :metas
+
   attr_accessor :raw_password, :raw_password_confirmation
 
   before_validation :confirm_password
