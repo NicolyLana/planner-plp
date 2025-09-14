@@ -1,5 +1,6 @@
 class TarefasController < ApplicationController
   before_action :set_tarefa, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
   def new
     @categorias = Categoria.all
@@ -8,7 +9,7 @@ class TarefasController < ApplicationController
 
   # GET /tarefas
   def index
-    @tarefas_por_data = Tarefa.where.not(status_id: 3).group_by(&:data) # Ignora tarefas concluídas
+    @tarefas_por_data = current_user.tarefas.where.not(status_id: 3).group_by(&:data) # Ignora tarefas concluídas
 
     respond_to do |format|
       format.html
@@ -38,7 +39,7 @@ class TarefasController < ApplicationController
 
   # POST /tarefas
   def create
-    @tarefa = Tarefa.new(tarefa_params)
+    @tarefa = current_user.tarefas.new(tarefa_params)
     @tarefa.status_id = Status.find_by(nome: 'Pendente')&.id || default_status_id
 
     if @tarefa.save

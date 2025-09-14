@@ -1,9 +1,10 @@
 class MetasController < ApplicationController
   before_action :set_meta, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
   # GET /metas
   def index
-    @metas_por_data = Meta.where.not(status_id: 3).group_by(&:data_inicio)
+    @metas_por_data = current_user.metas.where.not(status_id: 3).group_by(&:data_inicio)
     
     respond_to do |format|
       format.html
@@ -38,7 +39,7 @@ class MetasController < ApplicationController
 
   # POST /metas
   def create
-    @meta = Meta.new(meta_params)
+    @meta = current_user.metas.new(meta_params)
 
     if @meta.save
       redirect_to home_path, notice: 'Meta foi criada com sucesso.'

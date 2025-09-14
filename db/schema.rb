@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_23_144402) do
+ActiveRecord::Schema[7.1].define(version: 2025_09_14_221508) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,7 +26,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_23_144402) do
     t.bigint "tarefa_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["tarefa_id"], name: "index_lembretes_on_tarefa_id"
+    t.index ["user_id"], name: "index_lembretes_on_user_id"
   end
 
   create_table "meta", force: :cascade do |t|
@@ -37,8 +39,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_23_144402) do
     t.bigint "categoria_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["categoria_id"], name: "index_meta_on_categoria_id"
     t.index ["status_id"], name: "index_meta_on_status_id"
+    t.index ["user_id"], name: "index_meta_on_user_id"
   end
 
   create_table "planner_views", force: :cascade do |t|
@@ -64,8 +68,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_23_144402) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "turno"
+    t.bigint "user_id"
     t.index ["categoria_id"], name: "index_tarefas_on_categoria_id"
     t.index ["status_id"], name: "index_tarefas_on_status_id"
+    t.index ["user_id"], name: "index_tarefas_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -79,9 +85,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_23_144402) do
   end
 
   add_foreign_key "lembretes", "tarefas"
+  add_foreign_key "lembretes", "users"
   add_foreign_key "meta", "categoria", column: "categoria_id"
   add_foreign_key "meta", "statuses"
+  add_foreign_key "meta", "users"
   add_foreign_key "planner_views", "users"
   add_foreign_key "tarefas", "categoria", column: "categoria_id"
   add_foreign_key "tarefas", "statuses"
+  add_foreign_key "tarefas", "users"
 end

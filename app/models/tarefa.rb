@@ -1,6 +1,7 @@
 class Tarefa < ApplicationRecord
-    belongs_to :status
-    belongs_to :categoria
+  belongs_to :user  
+  belongs_to :status
+  belongs_to :categoria
   # belongs_to :lembrete
 
     validates :data, presence: true
