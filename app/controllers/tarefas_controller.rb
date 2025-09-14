@@ -9,7 +9,9 @@ class TarefasController < ApplicationController
 
   # GET /tarefas
   def index
-    @tarefas_por_data = current_user.tarefas.where.not(status_id: 3).group_by(&:data) # Ignora tarefas concluídas
+  status_concluido = Status.find_by(nome: 'Concluído')
+  status_concluido_id = status_concluido&.id || -1
+  @tarefas_por_data = current_user.tarefas.where.not(status_id: status_concluido_id).group_by(&:data) # Ignora tarefas concluídas
 
     respond_to do |format|
       format.html
@@ -75,11 +77,16 @@ class TarefasController < ApplicationController
       return
     end
 
-    # Use update para aplicar validações
-    if @tarefa.update(status_id: 3) # Atualizando o status corretamente
+    status_concluido = Status.find_by(nome: 'Concluído')
+    if status_concluido.nil?
+      render json: { success: false, message: 'Status "Concluído" não encontrado.' }, status: :unprocessable_entity
+      return
+    end
+
+    if @tarefa.update_column(:status_id, status_concluido.id)
       render json: { success: true, message: 'Tarefa marcada como concluída.' }
     else
-      render json: { success: false, message: @tarefa.errors.full_messages.join(", ") }, status: :unprocessable_entity
+      render json: { success: false, message: 'Erro ao marcar como concluída.' }, status: :unprocessable_entity
     end
   end
 
