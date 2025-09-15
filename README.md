@@ -1,18 +1,16 @@
-# Planner View
+# Planify
 
-Planner View é uma aplicação web desenvolvida com Ruby on Rails que ajuda os usuários a gerenciar suas atividades diárias de forma eficiente. Com o Planner View, os usuários podem criar atividades, definir datas e horários, marcar atividades como concluídas, gerar relatórios de desempenho e acompanhar suas metas por meio de gráficos interativos.
+**Planify** é uma aplicação web desenvolvida em **Ruby on Rails** que auxilia no gerenciamento de tarefas diárias de forma prática e organizada.  
+Com o **Planify**, é possível cadastrar atividades, definir prazos, marcar como concluídas, gerar relatórios de desempenho e acompanhar metas por meio de gráficos interativos.  
 
 ## Funcionalidades
 
-- **Criação de Atividades:** Permite que o usuário crie atividades com descrições detalhadas, datas e horários específicos.
-  
-- **Marcar Atividades como Concluídas:** Os usuários podem marcar atividades como concluídas, permitindo o acompanhamento do progresso.
+- **Cadastro de Atividades:** Permite registrar tarefas com descrições completas, datas e horários específicos.  
+- **Finalização de Atividades:** Possibilita marcar atividades como concluídas e acompanhar o progresso.  
+- **Relatórios de Desempenho:** Gera relatórios detalhados das tarefas concluídas em um período definido, permitindo monitorar o rendimento ao longo do tempo.  
+- **Exibição de Gráficos:** Oferece gráficos interativos para visualizar o progresso e identificar padrões de produtividade.  
+- **Estabelecimento de Metas:** Permite definir metas e acompanhar sua evolução até a conclusão.  
 
-- **Geração de Relatórios:** Gera relatórios detalhados das atividades concluídas em um período específico, permitindo ao usuário monitorar seu desempenho ao longo do tempo.
-
-- **Visualização de Gráficos:** Exibe gráficos de desempenho que ajudam os usuários a visualizar seu progresso e identificar padrões de produtividade.
-
-- **Definição de Metas:** Os usuários podem definir metas de atividades e acompanhar seu cumprimento ao longo do tempo.
 
 ## Instalação
 
@@ -49,7 +47,6 @@ Planner View é uma aplicação web desenvolvida com Ruby on Rails que ajuda os 
 
 * Ruby on Rails: Versão atual do framework para desenvolvimento web.
 * PostgreSQL: Versão atual do banco de dados utilizado para armazenar as informações.
-* Bootstrap: Framework CSS para o design da interface.
 * Chart.js: Biblioteca JavaScript para geração de gráficos interativos.
 
 ## Licença
