@@ -258,9 +258,13 @@
               todosItensDoDia.slice(0, itensParaMostrar).forEach(item => {
                 const itemType = item.hasOwnProperty('data') ? 'tarefa' : 'meta';
                 const categoriaClass = categoriaClasses[item.categoria_id];
+                // Limita a descrição a 30 caracteres com reticências
+                const descLimit = 10;
+                let desc = item.descricao || '';
+                let descShort = desc.length > descLimit ? desc.substring(0, descLimit) + '...' : desc;
                 cellContent += `
-                  <div class="${categoriaClass} ${itemType}-item" data-id="${item.id}" data-type="${itemType}" data-description="${item.descricao}">
-                    ${item.descricao}
+                  <div class="${categoriaClass} ${itemType}-item" data-id="${item.id}" data-type="${itemType}" data-description="${desc.replace(/"/g, '&quot;')}">
+                    ${descShort}
                   </div>`;
               });
               if (maisItens > 0) {
@@ -309,12 +313,15 @@
       $('#modalTaskList').empty();
 
       if (todosItensDoDia.length > 0) {
+        const descLimit = 30;
         todosItensDoDia.forEach(item => {
           const itemType = item.hasOwnProperty('data') ? 'tarefa' : 'meta';
           const categoriaClass = categoriaClasses[item.categoria_id];
+          let desc = item.descricao || '';
+          let descShort = desc.length > descLimit ? desc.substring(0, descLimit) + '...' : desc;
           $('#modalTaskList').append(`
             <li class="${categoriaClass} modal-task-item day-modal-item" data-id="${item.id}" data-type="${itemType}">
-              <span class="item-desc" style="cursor:pointer; text-decoration:underline;">${item.descricao}</span>
+              <span class="item-desc" style="cursor:pointer; text-decoration:underline;">${descShort}</span>
               <button class="complete-btn" data-id="${item.id}" data-type="${itemType}">Concluir</button>
             </li>`);
         });
