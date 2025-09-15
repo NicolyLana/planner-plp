@@ -398,7 +398,7 @@ main {
 }
 #markCompleteBtn:focus, #markCompleteBtn:active,
 .loginnew-form-btn:focus, .loginnew-form-btn:active {
-  background: #f7f7f7 !important;
+  background: #444444 !important;
 }
 
 /* Botão fechar (X) */
@@ -416,6 +416,30 @@ main {
 .close:hover {
   color: #fff; /* Fica branco ao passar o mouse */
   transform: rotate(90deg); /* Gira ao passar o mouse */
+}
+
+/* === Correções específicas para selects e inputs dentro dos modais === */
+/* Evita conflito com estilos escuros (ex: login.css) que tornam texto branco sobre fundo claro */
+.modal-content select,
+.modal-content input,
+.modal-content textarea {
+  color: #222 !important; /* texto escuro para contraste */
+  background: #fff !important; /* fundo claro para visibilidade */
+  -webkit-text-fill-color: #222 !important; /* para browsers webkit */
+}
+
+.modal-content select option {
+  background: #ffffff !important; /* opções com fundo branco */
+  color: #222 !important; /* texto escuro nas opções */
+}
+
+/* mantém aparência limpa: remove bordas agressivas mas mantém bottom border se desejado */
+.modal-content .wrap-inputnew {
+  margin-bottom: 14px;
+}
+
+.modal-content .focus-inputnew {
+  color: #666 !important;
 }
 
 /* Animação de entrada do modal */
