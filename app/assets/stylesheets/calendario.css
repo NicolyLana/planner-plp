@@ -9,7 +9,7 @@
   font-weight: 600;
   font-size: 1em;
   border: none !important;
-  border-radius: 8px;
+  border-radius: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(80, 80, 80, 0.3) !important;
@@ -78,7 +78,7 @@ main {
 .calendar {
   flex-grow: 1;
   background: rgba(255, 255, 255, 0.16); /* branco com 60% opacidade */
-  border-radius: 12px;
+  border-radius: 16px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 5);
   padding: 25px;
   display: flex;
@@ -131,7 +131,7 @@ main {
   background: rgba(110, 96, 96, 0.16); /* branco com 60% opacidade */
   vertical-align: top;
   height: 120px; /* Mais espaçado */
-  border-radius: 6px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.16); /* branco com 60% opacidade */
 }
 
@@ -143,7 +143,7 @@ main {
 .tarefa-item, .meta-item {
   padding: 6px 10px;
   margin-bottom: 6px;
-  border-radius: 6px;
+  border-radius: 12px;
   font-size: 0.9em;
   color: #fff;
   font-weight: 500;
@@ -165,7 +165,7 @@ main {
   gap: 20px;
   padding: 25px;
   background: rgba(255, 255, 255, 0.16); /* branco com 60% opacidade */
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 5);
   align-items: stretch;
   flex-shrink: 0;
@@ -232,7 +232,7 @@ main {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 12px;
   background: #fafafa;
   font-weight: 500;
 }
@@ -354,7 +354,7 @@ main {
   background: rgba(255, 255, 255, 0.15); /* Fundo branco bem transparente */
   backdrop-filter: blur(10px); /* O efeito de desfoque */
   -webkit-backdrop-filter: blur(10px); /* Compatibilidade Safari */
-  border-radius: 18px; /* Cantos mais arredondados */
+  border-radius: 22px; /* Cantos mais arredondados */
   padding: 30px 40px; /* Mais preenchimento interno */
   width: 90%;
   max-width: 450px; /* Um pouco mais compacto */
@@ -424,12 +424,13 @@ main {
 .modal-content input,
 .modal-content textarea {
   color: #222 !important; /* texto escuro para contraste */
-  background: #fff !important; /* fundo claro para visibilidade */
+  background: rgba(255, 255, 255, 0.25); /* Fundo branco bem transparente */ /* fundo claro para visibilidade */
   -webkit-text-fill-color: #222 !important; /* para browsers webkit */
+  border-radius: 10px !important;
 }
 
 .modal-content select option {
-  background: #ffffff !important; /* opções com fundo branco */
+  background: rgba(255, 255, 255, 0.15); /* Fundo branco bem transparente *//* opções com fundo branco */
   color: #222 !important; /* texto escuro nas opções */
 }
 
