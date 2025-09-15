@@ -1,52 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Nova Meta</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'tarefas', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= stylesheet_link_tag 'metas', media: 'all', 'data-turbo-track': 'reload' %>
+
+  <%= javascript_importmap_tags %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <%# 2. Carregando o JS de Metas %>
+  <%= javascript_include_tag 'metas', 'data-turbo-track': 'reload' %>
+
+</head>
+<body class="page-metas">
+
+<%# 3. A estrutura HTML (mantive classes do JS para não quebrar comportamentos) %>
 <div class="limiter">
   <div class="container-metas" style="background-image: url('<%= asset_path("meta.png") %>');">
-    <div class="wrap-metas">
-      <%= form_with(model: @meta, url: metas_path, local: true, class: "metas-form") do |form| %>
+    <div class="wrap-loginnew">
 
-        <span class="metas-form-title">
-          Criar Meta
-        </span>
+      <%= form_with(model: @meta, url: metas_path, local: true, class: "loginnew-form validate-form") do |form| %>
+          <span class="loginnew-form-title p-b-34 p-t-27">
+            Nova Meta
+          </span>
 
-        <!-- Data Início -->
-        <div class="wrap-input-metas">
-          <%= form.date_field :data_inicio, class: "input-metas", placeholder: " " %>
-          <span class="focus-input-metas">Data Início</span>
+        <div class="wrap-inputnew validate-input">
+          <%= form.date_field :data_inicio, class: "inputnew input-metas", placeholder: " " %>
+          <span class="focus-inputnew" data-placeholder="Data de Início"></span>
         </div>
 
-        <!-- Data Fim -->
-        <div class="wrap-input-metas">
-          <%= form.date_field :data_fim, class: "input-metas", placeholder: " " %>
-          <span class="focus-input-metas">Data Fim</span>
+        <div class="wrap-inputnew validate-input">
+          <%= form.date_field :data_fim, class: "inputnew input-metas", placeholder: " " %>
+          <span class="focus-inputnew" data-placeholder="Data de Fim"></span>
         </div>
 
-        <!-- Descrição -->
-        <div class="wrap-input-metas">
-          <%= form.text_area :descricao, rows: 3, class: "input-metas", placeholder: " " %>
-          <span class="focus-input-metas">Descrição</span>
+        <div class="wrap-inputnew validate-input">
+          <%= form.text_area :descricao, rows: 3, class: "inputnew input-metas", placeholder: " " %>
+          <span class="focus-inputnew" data-placeholder="Descrição"></span>
         </div>
 
-        <!-- Status -->
-        <div class="wrap-input-metas">
+        <div class="wrap-inputnew validate-input">
           <%= form.collection_select :status_id, Status.all, :id, :nome,
-                                     { prompt: "Selecione um Status" },
-                                     { class: "input-metas", required: true } %>
-          <span class="focus-input-metas">Status</span>
+                                     { prompt: "Selecione um Status" }, { class: "inputnew input-metas", required: true } %>
+          <span class="focus-inputnew" data-placeholder="Status"></span>
         </div>
 
-        <!-- Categoria -->
-        <div class="wrap-input-metas">
+        <div class="wrap-inputnew validate-input">
           <%= form.collection_select :categoria_id, Categoria.all, :id, :nome,
-                                     { prompt: "Selecione uma Categoria" },
-                                     { class: "input-metas", required: true } %>
-          <span class="focus-input-metas">Categoria</span>
+                                     { prompt: "Selecione uma Categoria" }, { class: "inputnew input-metas", required: true } %>
+          <span class="focus-inputnew" data-placeholder="Categoria"></span>
         </div>
 
-        <div class="container-metas-form-btn">
-          <%= form.submit "Criar Meta", class: "metas-form-btn" %>
+        <div class="container-loginnew-form-btn">
+          <%= form.submit "Criar Meta", class: "loginnew-form-btn" %>
         </div>
 
       <% end %>
     </div>
   </div>
 </div>
+
+</body>
+</html>
+
 
