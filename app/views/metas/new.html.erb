@@ -1,42 +1,52 @@
 <div class="limiter">
-  <div class="container-loginnew" style="background-image: url('<%= asset_path("meta.png") %>');">
-    <div class="wrap-loginnew">
-      <%= form_with(model: @meta, url: metas_path, local: true, class: "loginnew-form") do |form| %>
+  <div class="container-metas" style="background-image: url('<%= asset_path("meta.png") %>');">
+    <div class="wrap-metas">
+      <%= form_with(model: @meta, url: metas_path, local: true, class: "metas-form") do |form| %>
 
-        <span class="loginnew-form-title">
+        <span class="metas-form-title">
           Criar Meta
         </span>
 
-        <div class="wrap-inputnew">
-          <%= form.date_field :data_inicio, class: "inputnew", placeholder: " " %>
-          <span class="focus-inputnew" data-placeholder="Data Início"></span>
+        <!-- Data Início -->
+        <div class="wrap-input-metas">
+          <%= form.date_field :data_inicio, class: "input-metas", placeholder: " " %>
+          <span class="focus-input-metas">Data Início</span>
         </div>
 
-        <div class="wrap-inputnew">
-          <%= form.date_field :data_fim, class: "inputnew", placeholder: " " %>
-          <span class="focus-inputnew" data-placeholder="Data Fim"></span>
+        <!-- Data Fim -->
+        <div class="wrap-input-metas">
+          <%= form.date_field :data_fim, class: "input-metas", placeholder: " " %>
+          <span class="focus-input-metas">Data Fim</span>
         </div>
 
-        <div class="wrap-inputnew">
-          <%= form.text_area :descricao, rows: 3, class: "inputnew", placeholder: " " %>
-          <span class="focus-inputnew" data-placeholder="Descrição"></span>
+        <!-- Descrição -->
+        <div class="wrap-input-metas">
+          <%= form.text_area :descricao, rows: 3, class: "input-metas", placeholder: " " %>
+          <span class="focus-input-metas">Descrição</span>
         </div>
 
-        <div class="wrap-inputnew">
-          <%= form.collection_select :status_id, Status.all, :id, :nome, { prompt: "Selecione um Status" }, { class: "inputnew" } %>
-          <span class="focus-inputnew" data-placeholder="Status"></span>
+        <!-- Status -->
+        <div class="wrap-input-metas">
+          <%= form.collection_select :status_id, Status.all, :id, :nome,
+                                     { prompt: "Selecione um Status" },
+                                     { class: "input-metas", required: true } %>
+          <span class="focus-input-metas">Status</span>
         </div>
 
-        <div class="wrap-inputnew">
-          <%= form.collection_select :categoria_id, Categoria.all, :id, :nome, { prompt: "Selecione uma Categoria" }, { class: "inputnew" } %>
-          <span class="focus-inputnew" data-placeholder="Categoria"></span>
+        <!-- Categoria -->
+        <div class="wrap-input-metas">
+          <%= form.collection_select :categoria_id, Categoria.all, :id, :nome,
+                                     { prompt: "Selecione uma Categoria" },
+                                     { class: "input-metas", required: true } %>
+          <span class="focus-input-metas">Categoria</span>
         </div>
 
-        <div class="container-loginnew-form-btn">
-          <%= form.submit "Criar Meta", class: "loginnew-form-btn" %>
+        <div class="container-metas-form-btn">
+          <%= form.submit "Criar Meta", class: "metas-form-btn" %>
         </div>
 
       <% end %>
     </div>
   </div>
 </div>
+

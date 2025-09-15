@@ -1,134 +1,135 @@
 /* === Estrutura base === */
 .limiter {
-  width: 100%;
-  margin: 0 auto;
+    width: 100%;
+    margin: 0 auto;
 }
 
-.container-loginnew {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-  background-position: center;
-  background-size: cover;
-  position: relative;
+.container-metas {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
 }
 
-.wrap-loginnew {
-  width: 500px;
-  background: rgba(0, 0, 0, 0.85);
-  border-radius: 16px;
-  overflow: hidden;
-  padding: 50px 40px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+.wrap-metas {
+    width: 500px;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 50px 40px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
 }
 
 /* === Título === */
-.loginnew-form-title {
-  font-size: 28px;
-  color: #E0E0E0;
-  line-height: 1.5;
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 35px;
+.metas-form-title {
+    font-size: 28px;
+    color: #E0E0E0;
+    line-height: 1.5;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 35px;
 }
 
 /* === Campo genérico === */
-.wrap-inputnew {
-  position: relative;
-  width: 100%;
-  margin-bottom: 32px;
+.wrap-input-metas {
+    position: relative;
+    width: 100%;
+    margin-bottom: 32px;
 }
 
-.inputnew {
-  font-size: 16px;
-  color: #F8F8F8;
-  display: block;
-  width: 100%;
-  background: transparent;
-  padding: 25px 15px 4px 15px;
-  border: none;
-  border-bottom: 2px solid #888;
-  outline: none;
+.input-metas {
+    font-size: 16px;
+    color: #F8F8F8;
+    display: block;
+    width: 100%;
+    background: transparent;
+    padding: 25px 15px 4px 15px;
+    border: none;
+    border-bottom: 2px solid #888;
+    outline: none;
 }
 
-.inputnew:focus {
-  border-bottom: 2px solid #6c63ff;
+.input-metas:focus {
+    border-bottom: 2px solid #6c63ff;
 }
 
-
-.focus-inputnew {
-  position: absolute;
-  top: 12px;
-  left: 15px;
-  pointer-events: none;
-  color: #B0B0B0;
-  font-size: 16px;
-  transition: 0.3s ease all;
+.focus-input-metas {
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    pointer-events: none;
+    color: #B0B0B0;
+    font-size: 16px;
+    transition: 0.3s ease all;
 }
 
-.inputnew:focus + .focus-inputnew,
-.inputnew:not([value=""]):not(:placeholder-shown) + .focus-inputnew,
-select.inputnew:not([value=""]) + .focus-inputnew {
-  top: -10px;
-  left: 10px;
-  font-size: 12px;
-  color: #8C83FF;
+.input-metas:focus + .focus-input-metas,
+.input-metas:not(:placeholder-shown) + .focus-input-metas,
+textarea.input-metas:not(:placeholder-shown) + .focus-input-metas,
+select.input-metas:valid + .focus-input-metas {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+    color: #8C83FF;
 }
 
 /* === Botão === */
-.container-loginnew-form-btn {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
+.container-metas-form-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
 }
 
-.loginnew-form-btn {
-  font-size: 16px;
-  color: #fff;
-  background: linear-gradient(135deg, #6c63ff, #4c47e6);
-  border: none;
-  border-radius: 16px;
-  padding: 12px 40px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  width: 100%;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+.metas-form-btn {
+    font-size: 16px;
+    color: #fff;
+    background: linear-gradient(135deg, #6c63ff, #4c47e6);
+    border: none;
+    border-radius: 16px;
+    padding: 12px 40px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
 }
 
-.loginnew-form-btn:hover {
-  background: linear-gradient(135deg, #574bff, #3c37c9);
-  box-shadow: 0px 6px 12px rgba(0,0,0,0.4);
+.metas-form-btn:hover {
+    background: linear-gradient(135deg, #574bff, #3c37c9);
+    box-shadow: 0px 6px 12px rgba(0,0,0,0.4);
 }
 
-/* === Ajustes para textarea e select === */
-textarea.inputnew {
-  resize: none;
-  min-height: 80px;
+/* === Ajustes para textarea === */
+textarea.input-metas {
+    resize: none;
+    min-height: 80px;
 }
 
-select.inputnew {
-  background: transparent;
-  color: #F8F8F8;
-  appearance: none;
-  border: none;
-  border-bottom: 2px solid #888;
-  cursor: pointer;
+/* === Ajustes para select === */
+select.input-metas {
+    background: transparent;
+    color: #F8F8F8;
+    appearance: none;
+    border: none;
+    border-bottom: 2px solid #888;
+    cursor: pointer;
 }
 
-select.inputnew option {
-  background: #2D2D2D;
-  color: #F8F8F8;
+select.input-metas option {
+    background: #2D2D2D;
+    color: #F8F8F8;
 }
 
-.inputnew::-webkit-calendar-picker-indicator {
-  display: block !important;
-  -webkit-appearance: auto !important;
-  opacity: 0.7 !important; 
-  cursor: pointer;
-
-  filter: invert(1);
+/* === Ícone do date picker (visível em dark mode) === */
+.input-metas::-webkit-calendar-picker-indicator {
+    display: block !important;
+    -webkit-appearance: auto !important;
+    opacity: 0.7 !important;
+    cursor: pointer;
+    filter: invert(1);
 }

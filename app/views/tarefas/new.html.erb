@@ -1,40 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Tarefas</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= stylesheet_link_tag 'tarefas', 'data-turbo-track': 'reload' %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= javascript_importmap_tags %>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <%= javascript_include_tag 'tarefas', 'data-turbo-track': 'reload' %>
+
+</head>
+<body class="page-tarefas">
 <div class="limiter">
-  <div class="container-loginnew" style="background-image: url('<%= asset_path("tarefa.png") %>');">
+  <div class="container-tarefas" style="background-image: url('<%= asset_path("Tarefas.jpg") %>');">
     <div class="wrap-loginnew">
       <%= form_with(model: @tarefa, local: true, class: "loginnew-form validate-form") do |form| %>
+          <span class="loginnew-form-title p-b-34 p-t-27">
+            Nova Tarefa
+          </span>
 
-        <span class="loginnew-form-title">
-          Nova Tarefa
-        </span>
-
-        <div class="wrap-inputnew">
-          <%# Adicionado placeholder: " " %>
+        <div class="wrap-inputnew validate-input">
           <%= form.date_field :data, class: "inputnew", placeholder: " " %>
           <span class="focus-inputnew" data-placeholder="Data"></span>
         </div>
 
-        <div class="wrap-inputnew">
-          <%# Adicionado placeholder: " " %>
+        <div class="wrap-inputnew validate-input">
           <%= form.text_area :descricao, rows: 3, class: "inputnew", placeholder: " " %>
           <span class="focus-inputnew" data-placeholder="Descrição"></span>
         </div>
 
-        <div class="wrap-inputnew">
-          <%# Alterado para placeholder: " " %>
+        <div class="wrap-inputnew validate-input">
           <%= form.text_field :bloco, class: "inputnew", placeholder: " " %>
           <span class="focus-inputnew" data-placeholder="Tempo planejado (ex: 30 minutos)"></span>
         </div>
 
-        <div class="wrap-inputnew">
+        <div class="wrap-inputnew validate-input">
           <%= form.collection_select :categoria_id, Categoria.all, :id, :nome,
-                { prompt: "Selecione uma Categoria" }, { class: "inputnew" } %>
+                                     { prompt: "Selecione uma Categoria" }, { class: "inputnew" } %>
           <span class="focus-inputnew" data-placeholder="Categoria"></span>
         </div>
 
-        <div class="wrap-inputnew">
+        <div class="wrap-inputnew validate-input">
           <%= form.select :turno,
-                [["Manhã", "Manhã"], ["Tarde", "Tarde"], ["Noite", "Noite"], ["Madrugada", "Madrugada"]],
-                { prompt: "Selecione um turno" }, { class: "inputnew" } %>
+                          [["Manhã", "Manhã"], ["Tarde", "Tarde"], ["Noite", "Noite"], ["Madrugada", "Madrugada"]],
+                          { prompt: "Selecione um turno" }, { class: "inputnew" } %>
           <span class="focus-inputnew" data-placeholder="Turno"></span>
         </div>
 
@@ -46,3 +58,9 @@
     </div>
   </div>
 </div>
+</body>
+</html>
+
+
+
+

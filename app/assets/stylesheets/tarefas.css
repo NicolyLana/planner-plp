@@ -1,126 +1,202 @@
-.limiter {
-  width: 100%;
-  margin: 0 auto;
+/* Container */
+.tarefas-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-top: 5vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
 }
 
-.container-loginnew {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-  background-position: center;
-  background-size: cover;
-  position: relative;
+/* Imagem */
+.tarefas-image {
+    flex: 1;
+    padding: 2vw;
+    box-sizing: border-box;
+    text-align: center;
 }
 
-.wrap-loginnew {
-  width: 500px;
-  background: rgba(0, 0, 0, 0.85);
-  border-radius: 16px;
-  overflow: hidden;
-  padding: 50px 40px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+.tarefas-image img {
+    height: 80vh;
+    width: auto;
+    border-radius: 1em;
 }
 
-.loginnew-form-title {
-  font-size: 28px;
-  color: #E0E0E0;
-  line-height: 1.5;
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 35px;
+/* Formulário */
+.tarefas-form {
+    flex: 1;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.wrap-inputnew {
-  position: relative;
-  width: 100%;
-  margin-bottom: 32px;
+.tarefas-form h2 {
+    text-align: center;
+    margin-bottom: 1em;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 2em;
 }
 
-.inputnew {
-  font-size: 16px;
-  color: #F8F8F8;
-  display: block;
-  width: 100%;
-  background: transparent;
-  padding: 20px 15px 8px 15px;
-  border: none;
-  border-bottom: 2px solid #888;
-  outline: none;
+/* Grupos de campos */
+.form-group {
+    margin-bottom: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.inputnew:focus {
-  border-bottom: 2px solid #6c63ff;
+.form-content {
+    position: relative;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
-.focus-inputnew {
-  position: absolute;
-  top: 12px;
-  left: 15px;
-  pointer-events: none;
-  color: #B0B0B0;
-  font-size: 16px;
-  transition: 0.3s ease all;
+.form-group:nth-child(5) {
+    margin-bottom: 0;
 }
 
-.inputnew:focus + .focus-inputnew,
-.inputnew:not(:placeholder-shown) + .focus-inputnew {
-  top: -10px;
-  left: 10px;
-  font-size: 12px;
-  color: #8C83FF;
+/* Inputs */
+.tarefas-input {
+    width: 80%;
+    height: 5vh;
+    background-color: #F0EDFF;
+    color: #333;
+    transition: border-color 0.3s ease;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: small;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 1.8em;
+    background-position: 1.2em;
+    backface-visibility: visible;
 }
 
-.container-loginnew-form-btn {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
+.tarefas-input:focus {
+    outline: none;
+    border-color: #999;
 }
 
-.loginnew-form-btn {
-  font-size: 16px;
-  color: #fff;
-  background: linear-gradient(135deg, #6c63ff, #4c47e6);
-  border: none;
-  border-radius: 16px;
-  padding: 12px 40px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  width: 100%;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+.form-control {
+    width: 50%;
+    padding: 0.75em;
+    padding-left: 4em;
+    border-radius: 1.3em;
+    border: 1px solid #ccc;
+    box-shadow: 0 0.6vh 0.8vw #999999;
 }
 
-.loginnew-form-btn:hover {
-  background: linear-gradient(135deg, #574bff, #3c37c9);
-  box-shadow: 0px 6px 12px rgba(0,0,0,0.4);
+/* Botão */
+.tarefas-btn {
+    width: auto;
+    max-width: 100%;
+    padding: 1.25em;
+    background: linear-gradient(90deg, #9181F4, #5038ED);
+    color: white;
+    border: none;
+    border-radius: 1em;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: bold;
+    font-size: medium;
+    box-shadow: 0 0.6vh 0.8vw #999999;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-textarea.inputnew {
-  resize: none;
-  min-height: 80px;
+.tarefas-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 0.3vh 0.4vw #666666;
 }
 
-select.inputnew {
-  background: transparent;
-  color: #F8F8F8;
-  appearance: none;
-  border: none;
-  border-bottom: 2px solid #888;
-  cursor: pointer;
+.tarefas-btn:hover {
+    background-color: #5a54d1;
 }
 
-select.inputnew option {
-  background: #2D2D2D;
-  color: #F8F8F8;
+/* Links e textos */
+.tarefas-form a {
+    color: black;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: bold;
+    font-size: 0.95em;
+    text-decoration: none;
 }
 
-.inputnew::-webkit-calendar-picker-indicator {
-  display: block !important;
-  -webkit-appearance: auto !important;
-  opacity: 0.7 !important;
-  cursor: pointer;
-  filter: invert(1);
+.tarefas-form p {
+    width: 78%;
+    text-align: right;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
 }
+
+/* Validação de erros */
+.field_with_errors {
+    width: 100%;
+}
+
+.field_with_errors input {
+    border: 0.2em solid #B00100;
+}
+
+/* Responsividade */
+@media (max-width: 960px) {
+    .tarefas-image {
+        display: none;
+    }
+}
+/* Aplica cores às opções do dropdown */
+#tarefa_categoria_id option,
+#tarefa_turno option {
+    background-color: #F0EDFF; /* mesmo fundo do input */
+    color: #000;               /* texto preto */
+}
+
+/* Para o prompt inicial */
+#tarefa_categoria_id option:first-child,
+#tarefa_turno option:first-child {
+    color: #666; /* opcional, deixa mais suave */
+}
+
+
+.container-tarefas{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
+
+/* Overlay semi-transparente sobre a imagem de fundo */
+.container-tarefas::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255,255,255,0.94);
+}
+
+.container-tarefas > * {
+    position: relative;
+    z-index: 1;
+}
+
