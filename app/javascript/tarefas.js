@@ -3,6 +3,9 @@ $(document).ready(function() {
 
     $('#tarefa_data, #tarefa_categoria_id, #tarefa_turno').addClass('has-val');
 
+    $('#tarefaData, #tarefaDescricao, #tarefaBloco, #tarefaCategoria, #tarefaTurno')
+        .addClass('has-val');
+
     $('.inputnew').not('#tarefa_data, #tarefa_categoria_id, #tarefa_turno').each(function(){
         var $this = $(this);
 

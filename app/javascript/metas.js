@@ -4,6 +4,9 @@ $(document).ready(function() {
     // Adiciona 'has-val' aos campos que já devem iniciar preenchidos
     $('#meta_data_inicio, #meta_data_fim, #meta_status_id, #meta_categoria_id').addClass('has-val');
 
+    $('#metaDataInicio, #metaDataFim, #metaDescricao, #metaStatus, #metaCategoria')
+        .addClass('has-val');
+
 
     // Verifica os demais campos de metas
     $('.inputnew').not('#meta_data, #meta_categoria_id, #meta_turno').each(function(){
