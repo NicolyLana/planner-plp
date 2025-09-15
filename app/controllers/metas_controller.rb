@@ -58,9 +58,17 @@ class MetasController < ApplicationController
   # PATCH/PUT /metas/:id
   def update
     if @meta.update(meta_params)
-      redirect_to @meta, notice: 'Meta foi atualizada com sucesso.'
+      if request.xhr? || request.format.json?
+        render json: { success: true, message: 'Meta atualizada com sucesso.' }
+      else
+        redirect_to meta_path(@meta), notice: 'Meta foi atualizada com sucesso.'
+      end
     else
-      render :edit, status: :unprocessable_entity
+      if request.xhr? || request.format.json?
+        render json: { success: false, errors: @meta.errors.full_messages }, status: :unprocessable_entity
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
   end
 

@@ -1,3 +1,57 @@
+/* Botão padrão dos modais (Salvar Alterações e Marcar como Concluída) */
+
+.loginnew-form-btn,
+#markCompleteBtn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #666 !important; /* cinza sólido */
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 1em;
+  border: none !important;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(80, 80, 80, 0.3) !important;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+/* Hover - cinza mais escuro */
+
+.loginnew-form-btn:hover,
+#markCompleteBtn:hover {
+  background: #444 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(50, 50, 50, 0.6) !important;
+}
+
+/* Estado ativo/focus */
+
+.loginnew-form-btn:focus,
+.loginnew-form-btn:active,
+#markCompleteBtn:focus,
+#markCompleteBtn:active {
+  background: #333 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.5) !important;
+}
+
+/* Container para botões (coluna + espaçamento) */
+.container-loginnew-form-btn {
+  gap: 0;
+}
+
+/* Espaçamento individual por botão */
+#markCompleteBtn,
+.loginnew-form-btn {
+  margin-bottom: 14px;
+}
+  margin-top: 20px;
+}
+
+
 /* Estilos Gerais */
 body {
     font-family: Montserrat-Regular;
@@ -42,17 +96,18 @@ main {
 
 .calendar-header h2 {
   margin: 0;
-  font-size: 2em;
-  font-weight: 700;
-  color: #050000;
-}
-
-.calendar-header button {
+  font-size: 1em;
+  color: #fff;
+  background: linear-gradient(135deg, #6c63ff, #8a7dff);
   border: none;
-  border-radius: 50%;
-  padding: 10px;
+  border-radius: 8px;
+  padding: 10px 18px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  width: auto;
+  min-width: 120px;
+  box-shadow: 0 2px 8px rgba(108, 99, 255, 0.3);
+  margin-bottom: 14px;
 }
 
 .calendar-header button:hover {
@@ -332,24 +387,20 @@ main {
 }
 
 /* Botão "Marcar como Concluída" */
-#markCompleteBtn {
-  display: inline-block;
-  padding: 14px 25px; /* Mais preenchimento */
-  background: linear-gradient(135deg, #6c63ff, #8a7dff); /* Degradê no botão */
-  color: #fff;
-  font-weight: 600;
-  font-size: 1.1em;
-  border: none;
-  border-radius: 10px; /* Cantos mais arredondados */
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4); /* Sombra no botão */
-}
 
-#markCompleteBtn:hover {
-  background: linear-gradient(135deg, #5548d6, #6c63ff); /* Degradê ao passar o mouse */
-  transform: translateY(-2px); /* Efeito de "levantar" */
-  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.6);
+/* Remove qualquer gradiente ou cor conflitante do botão do modal */
+#markCompleteBtn,
+.loginnew-form-btn {
+  color: #030000 !important;
+  border: none !important;
+  width: 100%;}
+#markCompleteBtn:hover,
+.loginnew-form-btn:hover {
+  background: #04c223 !important;
+}
+#markCompleteBtn:focus, #markCompleteBtn:active,
+.loginnew-form-btn:focus, .loginnew-form-btn:active {
+  background: #f7f7f7 !important;
 }
 
 /* Botão fechar (X) */
