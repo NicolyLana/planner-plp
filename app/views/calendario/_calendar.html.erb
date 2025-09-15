@@ -81,8 +81,105 @@
     <div class="modal-content">
       <span class="close-task-modal">&times;</span>
       <h2 id="taskModalTitle"></h2>
-      <p id="taskModalDescription"></p>
-      <button id="markCompleteBtn">Marcar como Concluída</button>
+      <form id="taskEditForm">
+        <div id="metaFields" style="display:none;">
+          <div class="wrap-inputnew">
+            <input type="date" id="metaDataInicio" name="data_inicio" class="inputnew" placeholder=" ">
+            <span class="focus-inputnew" data-placeholder="Data Início"></span>
+          </div>
+          <div class="wrap-inputnew">
+            <input type="date" id="metaDataFim" name="data_fim" class="inputnew" placeholder=" ">
+            <span class="focus-inputnew" data-placeholder="Data Fim"></span>
+          </div>
+          <div class="wrap-inputnew">
+            <textarea id="metaDescricao" name="descricao" rows="3" class="inputnew" placeholder=" "></textarea>
+            <span class="focus-inputnew" data-placeholder="Descrição"></span>
+          </div>
+          <div class="wrap-inputnew">
+            <select id="metaStatus" name="status_id" class="inputnew">
+              <option value="1">Pendente</option>
+              <option value="2">Em Andamento</option>
+              <option value="3">Concluído</option>
+            </select>
+            <span class="focus-inputnew" data-placeholder="Status"></span>
+          </div>
+          <div class="wrap-inputnew">
+            <select id="metaCategoria" name="categoria_id" class="inputnew">
+              <option value="1">Tarefas Diárias</option>
+              <option value="2">Prazo de Entrega</option>
+              <option value="3">Aulas</option>
+              <option value="4">Trabalhos</option>
+              <option value="5">Revisões</option>
+              <option value="6">Provas</option>
+              <option value="7">Exercícios</option>
+              <option value="8">Saúde</option>
+              <option value="9">Hobbies</option>
+              <option value="10">Tempo em Família</option>
+              <option value="11">Contas a Pagar</option>
+              <option value="12">Orçamento</option>
+              <option value="13">Investimentos</option>
+              <option value="14">Metas de Longo Prazo</option>
+              <option value="15">Metas de Curto Prazo</option>
+              <option value="16">Hábitos</option>
+              <option value="17">Viagens</option>
+              <option value="18">Filmes/Séries</option>
+              <option value="19">Eventos Sociais</option>
+            </select>
+            <span class="focus-inputnew" data-placeholder="Categoria"></span>
+          </div>
+        </div>
+        <div id="tarefaFields" style="display:none;">
+          <div class="wrap-inputnew">
+            <input type="date" id="tarefaData" name="data" class="inputnew" placeholder=" ">
+            <span class="focus-inputnew" data-placeholder="Data"></span>
+          </div>
+          <div class="wrap-inputnew">
+            <textarea id="tarefaDescricao" name="descricao" rows="3" class="inputnew" placeholder=" "></textarea>
+            <span class="focus-inputnew" data-placeholder="Descrição"></span>
+          </div>
+          <div class="wrap-inputnew">
+            <input type="text" id="tarefaBloco" name="bloco" class="inputnew" placeholder=" ">
+            <span class="focus-inputnew" data-placeholder="Tempo planejado (ex: 30 minutos)"></span>
+          </div>
+          <div class="wrap-inputnew">
+            <select id="tarefaCategoria" name="categoria_id" class="inputnew">
+              <option value="1">Tarefas Diárias</option>
+              <option value="2">Prazo de Entrega</option>
+              <option value="3">Aulas</option>
+              <option value="4">Trabalhos</option>
+              <option value="5">Revisões</option>
+              <option value="6">Provas</option>
+              <option value="7">Exercícios</option>
+              <option value="8">Saúde</option>
+              <option value="9">Hobbies</option>
+              <option value="10">Tempo em Família</option>
+              <option value="11">Contas a Pagar</option>
+              <option value="12">Orçamento</option>
+              <option value="13">Investimentos</option>
+              <option value="14">Metas de Longo Prazo</option>
+              <option value="15">Metas de Curto Prazo</option>
+              <option value="16">Hábitos</option>
+              <option value="17">Viagens</option>
+              <option value="18">Filmes/Séries</option>
+              <option value="19">Eventos Sociais</option>
+            </select>
+            <span class="focus-inputnew" data-placeholder="Categoria"></span>
+          </div>
+          <div class="wrap-inputnew">
+            <select id="tarefaTurno" name="turno" class="inputnew">
+              <option value="Manhã">Manhã</option>
+              <option value="Tarde">Tarde</option>
+              <option value="Noite">Noite</option>
+              <option value="Madrugada">Madrugada</option>
+            </select>
+            <span class="focus-inputnew" data-placeholder="Turno"></span>
+          </div>
+        </div>
+        <div class="container-loginnew-form-btn">
+          <button type="submit" id="saveTaskBtn" class="loginnew-form-btn">Salvar Alterações</button>
+        </div>
+      </form>
+  <button id="markCompleteBtn" class="loginnew-form-btn">Marcar como Concluída</button>
     </div>
   </div>
 </main>
@@ -211,22 +308,64 @@
           const itemType = item.hasOwnProperty('data') ? 'tarefa' : 'meta';
           const categoriaClass = categoriaClasses[item.categoria_id];
           $('#modalTaskList').append(`
-            <li class="${categoriaClass} modal-task-item">
-              <span>${item.descricao}</span>
+            <li class="${categoriaClass} modal-task-item day-modal-item" data-id="${item.id}" data-type="${itemType}">
+              <span class="item-desc" style="cursor:pointer; text-decoration:underline;">${item.descricao}</span>
               <button class="complete-btn" data-id="${item.id}" data-type="${itemType}">Concluir</button>
             </li>`);
         });
       } else {
         $('#modalTaskList').append('<li>Nenhuma tarefa ou meta para este dia.</li>');
       }
+    // Clique para editar tarefa/meta direto do modal do dia
+    $(document).on('click', '.day-modal-item .item-desc', function(e) {
+      e.stopPropagation();
+      const $li = $(this).closest('.day-modal-item');
+      const type = $li.data('type');
+      const id = $li.data('id');
+      let itemData = null;
+      if(type === 'tarefa') {
+        for(const date in tarefasData) {
+          const tarefa = (tarefasData[date] || []).find(t => t.id == id);
+          if(tarefa) { itemData = tarefa; break; }
+        }
+      } else {
+        for(const date in metasData) {
+          const meta = (metasData[date] || []).find(m => m.id == id);
+          if(meta) { itemData = meta; break; }
+        }
+      }
+      const title = type === 'tarefa' ? 'Tarefa' : 'Meta';
+      $('#dayModal').hide();
+      openTaskModal(title, itemData ? itemData.descricao : '', id, type, itemData);
+    });
 
       $('#dayModal').show();
     }
 
-    function openTaskModal(title, description, id, type) {
+    function openTaskModal(title, description, id, type, itemData = null) {
       $('#taskModalTitle').text(title);
-      $('#taskModalDescription').text(description);
       $('#markCompleteBtn').data('id', id).data('type', type);
+      // Reset fields
+      $('#metaFields, #tarefaFields').hide();
+      if(type === 'meta') {
+        $('#metaFields').show();
+        if(itemData) {
+          $('#metaDataInicio').val(itemData.data_inicio);
+          $('#metaDataFim').val(itemData.data_fim);
+          $('#metaDescricao').val(itemData.descricao);
+          $('#metaStatus').val(itemData.status_id);
+          $('#metaCategoria').val(itemData.categoria_id);
+        }
+      } else {
+        $('#tarefaFields').show();
+        if(itemData) {
+          $('#tarefaData').val(itemData.data);
+          $('#tarefaDescricao').val(itemData.descricao);
+          $('#tarefaBloco').val(itemData.bloco);
+          $('#tarefaCategoria').val(itemData.categoria_id);
+          $('#tarefaTurno').val(itemData.turno);
+        }
+      }
       $('#taskModal').show();
     }
 
@@ -240,11 +379,23 @@
     });
 
     $(document).on('click', '.tarefa-item, .meta-item', function() {
-      const title = $(this).data('type') === 'tarefa' ? 'Tarefa' : 'Meta';
-      const description = $(this).data('description');
-      const id = $(this).data('id');
       const type = $(this).data('type');
-      openTaskModal(title, description, id, type);
+      const id = $(this).data('id');
+      let itemData = null;
+      if(type === 'tarefa') {
+        // Procurar tarefa no tarefasData
+        for(const date in tarefasData) {
+          const tarefa = (tarefasData[date] || []).find(t => t.id == id);
+          if(tarefa) { itemData = tarefa; break; }
+        }
+      } else {
+        for(const date in metasData) {
+          const meta = (metasData[date] || []).find(m => m.id == id);
+          if(meta) { itemData = meta; break; }
+        }
+      }
+      const title = type === 'tarefa' ? 'Tarefa' : 'Meta';
+      openTaskModal(title, itemData ? itemData.descricao : '', id, type, itemData);
     });
     
     $(document).on('click', '.modal-task-item .complete-btn', function() {
@@ -253,10 +404,59 @@
       markAsComplete(id, type);
     });
 
+
     $(document).on('click', '#markCompleteBtn', function() {
       const id = $(this).data('id');
       const type = $(this).data('type');
       markAsComplete(id, type, true);
+    });
+
+    // Salvar alterações do modal (tarefa/meta)
+    $(document).on('submit', '#taskEditForm', function(e) {
+      e.preventDefault();
+      const type = $('#markCompleteBtn').data('type');
+      const id = $('#markCompleteBtn').data('id');
+      let data = {};
+      let url = '';
+      if(type === 'meta') {
+        data = {
+          meta: {
+            data_inicio: $('#metaDataInicio').val(),
+            data_fim: $('#metaDataFim').val(),
+            descricao: $('#metaDescricao').val(),
+            status_id: $('#metaStatus').val(),
+            categoria_id: $('#metaCategoria').val()
+          }
+        };
+        url = `/metas/${id}`;
+      } else {
+        data = {
+          tarefa: {
+            data: $('#tarefaData').val(),
+            descricao: $('#tarefaDescricao').val(),
+            bloco: $('#tarefaBloco').val(),
+            categoria_id: $('#tarefaCategoria').val(),
+            turno: $('#tarefaTurno').val()
+          }
+        };
+        url = `/tarefas/${id}`;
+      }
+      $.ajax({
+        url: url,
+        method: 'PATCH',
+        data: data,
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+        },
+        success: function(response) {
+          toastr.success('Alterações salvas com sucesso!');
+          $('#taskModal').hide();
+          fetchTarefasAndMetasAndRenderCalendar(currentDate);
+        },
+        error: function(xhr) {
+          toastr.error('Erro ao salvar alterações.');
+        }
+      });
     });
 
     function markAsComplete(id, type, closeTaskModal = false) {

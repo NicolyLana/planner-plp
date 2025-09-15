@@ -55,10 +55,18 @@ class TarefasController < ApplicationController
   # PATCH/PUT /tarefas/:id
   def update
     if @tarefa.update(tarefa_params)
-      redirect_to @tarefa, notice: 'Tarefa foi atualizada com sucesso.'
+      if request.xhr? || request.format.json?
+        render json: { success: true, message: 'Tarefa atualizada com sucesso.' }
+      else
+        redirect_to tarefa_path(@tarefa), notice: 'Tarefa foi atualizada com sucesso.'
+      end
     else
-      @categorias = Categoria.all # Garante que categorias estejam disponíveis ao renderizar o formulário
-      render :edit, status: :unprocessable_entity
+      if request.xhr? || request.format.json?
+        render json: { success: false, errors: @tarefa.errors.full_messages }, status: :unprocessable_entity
+      else
+        @categorias = Categoria.all # Garante que categorias estejam disponíveis ao renderizar o formulário
+        render :edit, status: :unprocessable_entity
+      end
     end
   end
 
