@@ -394,7 +394,7 @@ main {
   width: 100%;}
 #markCompleteBtn:hover,
 .loginnew-form-btn:hover {
-  background: #04c223 !important;
+  background: #15192e !important;
 }
 #markCompleteBtn:focus, #markCompleteBtn:active,
 .loginnew-form-btn:focus, .loginnew-form-btn:active {
@@ -644,7 +644,7 @@ main {
 }
 
 .add-tarefa-btn {
-  background: #00b894;
+  background: #15192e;
   color: #fff;
   border: none;
   padding: 10px 15px;
